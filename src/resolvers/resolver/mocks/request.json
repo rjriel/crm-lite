@@ -1,6 +1,8 @@
 {
   "data": {
-    "foo": "bar"
+    "year": 2023,
+    "quarterStart": "2023-01-01",
+    "quarterEnd": "2023-04-01"
   },
   "headers": {
     "x-header-1": "header value"

@@ -1,9 +1,9 @@
 functions:
-  # resolver:
-  #   type: resolver
-  #   handler:
-  #     code: src/resolvers/resolver/handler.ts
-  #   schema: src/resolvers/resolver/schema.graphql
+  dashboardNumbers:
+    type: resolver
+    handler:
+      code: src/resolvers/resolver/dashboardNumbers.ts
+    schema: src/resolvers/resolver/schema.graphql
   # task:
   #   type: task
   #   handler:

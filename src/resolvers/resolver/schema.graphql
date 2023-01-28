@@ -6,10 +6,14 @@
 # https://docs.8base.com/8base-console/custom-functions/resolvers
 #
  
-type ResolverResult {
-  result: String!
+type DashboardNumbersResult {
+  ytdClosedDeals: Float,
+  cqClosedDeals: Float,
+  openDeals: Int,
+  totalLeads: Int,
+  newNotes: Int
 }
 
 extend type Query {
-  resolver(foo: String!): ResolverResult
+  dashboardNumbers(year: Int, quarterStart: Date, quarterEnd: Date): DashboardNumbersResult
 }

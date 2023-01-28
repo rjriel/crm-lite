@@ -1,4 +1,4 @@
-import { FunctionContext, FunctionEvent, FunctionResult } from '8base-cli-types';
+import { FunctionContext, FunctionResult } from '8base-cli-types';
 
 
 type TriggerResult = FunctionResult<{
