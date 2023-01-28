@@ -10,8 +10,7 @@ type DashboardNumbersResult {
   ytdClosedDeals: Float,
   cqClosedDeals: Float,
   openDeals: Int,
-  totalLeads: Int,
-  newNotes: Int
+  totalLeads: Int
 }
 
 extend type Query {

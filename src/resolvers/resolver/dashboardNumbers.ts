@@ -69,8 +69,7 @@ type DashboardNumbersResult = FunctionResult<{
   ytdClosedDeals: number,
   cqClosedDeals: number,
   openDeals: number,
-  totalLeads: number,
-  newNotes: number
+  totalLeads: number
 }>;
 
 export default async (
