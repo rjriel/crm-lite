@@ -1,21 +1,12 @@
 functions:
-  dashboardNumbers:
-    type: resolver
-    handler:
-      code: src/resolvers/resolver/dashboardNumbers.ts
-    schema: src/resolvers/resolver/schema.graphql
-  # task:
-  #   type: task
-  #   handler:
-  #     code: src/tasks/task/handler.ts
-  # webhook:
-  #   type: webhook
-  #   handler:
-  #     code: src/webhooks/webhook/handler.ts
-  #   path: /webhook
-  #   method: POST
   forceSoftDelete:
     type: trigger.before
     handler:
       code: src/triggers/trigger/forceSoftDelete.ts
     operation: Lead.delete
+  dashboardNumbers:
+    type: resolver
+    handler:
+      code: src/resolvers/dashboardNumbers/handler.ts
+    schema: src/resolvers/dashboardNumbers/schema.graphql
+    description: Test Description here

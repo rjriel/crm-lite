@@ -1,33 +1,3 @@
-/**
- * This file was generated using 8base CLI.
- *
- * To learn more about writing custom GraphQL resolver functions, visit
- * the 8base documentation at:
- *
- * https://docs.8base.com/docs/8base-console/custom-functions/resolvers/
- *
- * To update this functions invocation settings, update its configuration block
- * in the projects 8base.yml file:
- *  functions:
- *    resolver:
- *      ...
- *
- * Data that is sent to this function can be accessed on the event argument at:
- *  event.data[KEY_NAME]
- *
- * There are two ways to invoke this function locally:
- *
- *  (1) Explicit file mock file path using '-p' flag:
- *    8base invoke-local resolver -p src/resolvers/resolver/mocks/request.json
- *
- *  (2) Default mock file location using -m flag:
- *    8base invoke-local resolver -m request
- *
- *  Add new mocks to this function to test different input arguments. Mocks can easily be generated
- *  the following generator command:
- *    8base generate mock resolver -m [MOCK_FILE_NAME]
- */
-
 import { FunctionContext, FunctionEvent, FunctionResult } from '8base-cli-types'
 import gql from 'graphql-tag'
 
@@ -72,15 +42,11 @@ type DashboardNumbersResult = FunctionResult<{
   totalLeads: number
 }>;
 
-export default async (
-  event: FunctionEvent,
-  ctx: FunctionContext,
-): DashboardNumbersResult => {
-  const year = (new Date()).getFullYear()
+const getQuarterStrings = (year, month) => {
   let quarterStart
   let quarterEnd
   let quarterEndYear = year
-  switch(new Date().getMonth()) {
+  switch(month) {
     case 0:
     case 1:
     case 2:
@@ -104,8 +70,16 @@ export default async (
       quarterEnd = "01"
       quarterEndYear = year + 1
   }
-  const quarterStartString = `${year}-${quarterStart}-01`
-  const quarterEndString = `${quarterEndYear}-${quarterEnd}-01`
+
+  return [`${year}-${quarterStart}-01`, `${quarterEndYear}-${quarterEnd}-01`]
+}
+
+export default async (
+  event: FunctionEvent,
+  ctx: FunctionContext,
+): DashboardNumbersResult => {
+  const year = (new Date()).getFullYear()
+  const [quarterStartString, quarterEndString] = getQuarterStrings(year, new Date().getMonth())
   const ytdRequest = await ctx.api.gqlRequest<any>(YTD_QUERY, { startDate: `${year}-01-01`, endDate: `${year+1}-01-01` })
   const ytdClose = ytdRequest.opportunitiesList.items.reduce((accumulator, item) => accumulator + (item.amount || 0), 0)
   const quarterRequest = await ctx.api.gqlRequest<any>(YTD_QUERY, { startDate: `${quarterStartString}`, endDate: `${quarterEndString}` })
