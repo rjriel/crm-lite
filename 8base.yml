@@ -9,4 +9,13 @@ functions:
     handler:
       code: src/resolvers/dashboardNumbers/handler.ts
     schema: src/resolvers/dashboardNumbers/schema.graphql
-    description: Test Description here
+  convertLead:
+    type: resolver
+    handler:
+      code: src/resolvers/convertLead/handler.ts
+    schema: src/resolvers/convertLead/schema.graphql
+  search:
+    type: resolver
+    handler:
+      code: src/resolvers/search/handler.ts
+    schema: src/resolvers/search/schema.graphql
