@@ -140,7 +140,7 @@ export default async (
     accounts: results.accountsList.items,
     contacts: results.contactsList.items,
     leads: results.leadsList.items,
-    opportunities: results.contactsList.items,
+    opportunities: results.opportunitiesList.items,
   }
   for (let i = 0; i < results.documentsList.items.length; i++) {
     await getEntities(ctx, results.documentsList.items[i].accounts, response.accounts, getAccountByIdQuery)
